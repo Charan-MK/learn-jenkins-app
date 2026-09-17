@@ -9,11 +9,11 @@ pipeline {
         }
         stage('Build') {
             agent {
-                    docker {
-                        image 'node:22-slim'
-                        reuseNode true
-                    }
+                docker {
+                    image 'node:22-slim'
+                    reuseNode true
                 }
+            }
 
             steps {
                 sh '''
@@ -27,6 +27,12 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker {
+                    image 'node:22-slim'
+                    reuseNode true
+                }
+            }
             steps {
                 echo 'Test stage'
                 sh '''
